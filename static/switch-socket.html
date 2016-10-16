@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<link rel='stylesheet' type='text/css' href="switch.css"/>
+<link rel='stylesheet' type='text/css' href="bulb.css"/>
+
+<body>
+
+<div class = 'bulb'>
+  <input type="checkbox" id="bulb"/>
+  <label for="bulb"></label>
+</div>
+
+<div id="button">
+  <a class="butt" onclick="putSwitchStatus()"></a>
+</div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+var socket = io();
+
+socket.on('connection', (msg) => {
+  console.log('msg');
+});
+
+var checked = document.getElementById('bulb').checked;
+// Send the get request
+
+socket.emit('get status', checked);
+socket.on('get status', (status) => {
+  changeSwitchTo(status);
+  socket.emit('get status', document.getElementById('bulb').checked);
+});
+
+socket.on('switch status', (status) => {
+  console.log(`changing light to: ${status}`);
+  changeSwitchTo(status);
+});
+
+function putSwitchStatus() {
+  var checked = !(document.getElementById('bulb').checked);
+  console.log(checked);
+  socket.emit('switch status', checked);
+  console.log('emitted');
+  return false;
+}
+
+function changeSwitchTo(status) {
+  document.getElementById('bulb').checked = status;
+  console.log(`Switch changed to: ${document.getElementById('bulb').checked}`)
+}
+
+</script>
