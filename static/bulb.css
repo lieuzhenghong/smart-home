@@ -4,7 +4,7 @@
 
 label {
   margin: 0 auto;
-  background-image:url('http://png.findicons.com/files/icons/1588/farm_fresh_web/32/lightbulb_off.png');
+  background-image:url('img/lightbulb_off.png');
   background-size: 100% 100%;
   display:block;
   width:100px;
@@ -12,7 +12,7 @@ label {
 }
 
 input:checked + label {
-  background-image:url('http://png.findicons.com/files/icons/1588/farm_fresh_web/32/lightbulb.png');
+  background-image:url('img/lightbulb_on.png');
 }
 
 input {
