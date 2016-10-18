@@ -36,7 +36,7 @@ py.stdout.on('end', function(){
 
 
 app.get('/', (req, res) => {
-  res.redirect('switch-socket.html');
+  res.redirect('switch.html');
 });
 
 // A function called by the hardware poller
